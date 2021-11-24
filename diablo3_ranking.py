@@ -1,7 +1,7 @@
 import requests
 import json
 
-lboards = ['barbarian', 'monk','dh', 'wd', 'wizard','crusader', 'team-2']
+lboards = ['barbarian', 'monk','dh', 'wd', 'wizard','crusader', 'team-2', 'team-3', 'team-4']
 
 def format_solo_best(run):
     print(f">> 1er: {run['player_data'][0]['btag']}\
@@ -9,7 +9,6 @@ def format_solo_best(run):
 p{run['player_data'][0]['plvl']} \
 -> GR{run['rift_data']['grlvl']} \
 en {run['rift_data']['time']}")
-    print("\n\nTop BriTs :")
 
 def format_solo_rank(cr, run):
     print(f"#{cr} : {run['player_data'][0]['btag']} \
@@ -22,8 +21,10 @@ def format_team_best(run):
     for p in run['player_data']:
         print(f"-> [{p['class']}] {p['btag']}({p.get('ctag','<Pas de clan>')}) - p{p['plvl']}")
 
-def format_team_rank(run):
-    pass
+def format_team_rank(cr, run):
+    print(f"#{cr} : GR{run['rift_data']['grlvl']} en {run['rift_data']['time']}")
+    for p in run['player_data']:
+        print(f"-> [{p['class']}] {p['btag']}({p.get('ctag','<Pas de clan>')}) - p{p['plvl']}")
 
 for lb in lboards:
     # Récupération de chaque flux classement sur maxroll.gg
@@ -40,13 +41,19 @@ for lb in lboards:
         if "team" in lb:
             if run['rift_data']['api_rank'] == 1:
                     format_team_best(run)
-            # WIP recherche de brit dans le groupe
+                    print("\n\nTop BriTs :")
             for player in run['player_data']:
-                pass
+                if player.get('ctag') == "BriT" and \
+                    player.get('cname') == "BriTon" and \
+                    clan_rank < 5:
+                    clan_rank += 1
+                    if clan_rank > 1 : print("\n")
+                    format_team_rank(clan_rank, run)
+                    break
         else:
-            # Print à factoriser vers une méthode dédiée
             if run['rift_data']['api_rank'] == 1:
                 format_solo_best(run)
+                print("\n\nTop BriTs :")
             elif 'ctag' in run['player_data'][0]:
                 if run['player_data'][0]['ctag'] == "BriT" and \
                     run['player_data'][0]['cname'] == "BriTon" and \
