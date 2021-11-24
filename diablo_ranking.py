@@ -1,16 +1,18 @@
 import requests
 import json
 
-url ='https://assets.maxroll.gg/leaderboards/s24-eu-rift-hardcore-dh.json'
-
 lboards = ['barbarian', 'monk','dh', 'wd', 'wizard','crusader', 'team-2']
 
 for lb in lboards:
+    # Récupération de chaque flux classement sur maxroll.gg
     url =f'https://assets.maxroll.gg/leaderboards/s24-eu-rift-hardcore-{lb}.json'
     response = requests.get(url)
+    # Instanciation du String JSON dans un Dict
     json_data = json.loads(response.content)
     data = json_data["data"]
+    # Initialisation du compteur classement Top BriT
     clan_rank = 0
+    # Print en-tête titre classement
     print(f"\n-------------------------\nClassement hardcore-{lb} :")
     if "team" in lb:
         # print à factoriser vers une méthode dédiée
