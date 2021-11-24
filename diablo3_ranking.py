@@ -6,18 +6,21 @@ lboards = ['barbarian', 'monk','dh', 'wd', 'wizard','crusader', 'team-2']
 def format_solo_best(run):
     print(f">> 1er: {run['player_data'][0]['btag']}\
 ({run['player_data'][0].get('ctag','<Pas de clan>')}) \
+p{run['player_data'][0]['plvl']} \
 -> GR{run['rift_data']['grlvl']} \
 en {run['rift_data']['time']}")
     print("\n\nTop BriTs :")
 
 def format_solo_rank(cr, run):
     print(f"#{cr} : {run['player_data'][0]['btag']} \
+p{run['player_data'][0]['plvl']} \
 -> GR{run['rift_data']['grlvl']} \
 en {run['rift_data']['time']}")
 
 def format_team_best(run):
-    print(len(run['player_data']))
-    print(f"GR{run['rift_data']['grlvl']} en {run['rift_data']['time']}")
+    print(f">> 1er: GR{run['rift_data']['grlvl']} en {run['rift_data']['time']}")
+    for p in run['player_data']:
+        print(f"-> [{p['class']}] {p['btag']}({p.get('ctag','<Pas de clan>')}) - p{p['plvl']}")
 
 def format_team_rank(run):
     pass
@@ -37,11 +40,9 @@ for lb in lboards:
         if "team" in lb:
             if run['rift_data']['api_rank'] == 1:
                     format_team_best(run)
-            # Print à factoriser vers une méthode dédiée
-            #for run in data:
-            #    for players in run['player_data']:
-            #        print(players)
-            #    break
+            # WIP recherche de brit dans le groupe
+            for player in run['player_data']:
+                pass
         else:
             # Print à factoriser vers une méthode dédiée
             if run['rift_data']['api_rank'] == 1:
