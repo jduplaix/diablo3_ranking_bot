@@ -20,19 +20,19 @@ def main():
             if "team" in lb:
                 if run['rift_data']['api_rank'] == 1:
                         format_team_best(run)
-                        print("\n\nTop BriTs :")
+                        print("\nTop BriTs :")
                 for player in run['player_data']:
                     if player.get('ctag') == "BriT" and \
                         player.get('cname') == "BriTon" and \
                         clan_rank < 5:
                         clan_rank += 1
-                        if clan_rank > 1 : print("\n")
+                        if clan_rank > 1 : print()
                         format_team_rank(clan_rank, run)
                         break
             else:
                 if run['rift_data']['api_rank'] == 1:
                     format_solo_best(run)
-                    print("\n\nTop BriTs :")
+                    print("\nTop BriTs :")
                 elif 'ctag' in run['player_data'][0]:
                     if run['player_data'][0]['ctag'] == "BriT" and \
                         run['player_data'][0]['cname'] == "BriTon" and \
