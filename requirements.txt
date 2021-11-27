@@ -1,2 +1,2 @@
 discord.py
-requests 2.25
+requests==2.25
