@@ -17,8 +17,8 @@ async def on_ready():
 @client.event
 async def on_message(message):
     print(f"Commande reçue : '{message.content}'")
-    if message.content == "!test":
-        r = maxroll_scrap.test(message.content)
+    if message.content == "!saison":
+        r = maxroll_scrap.get_current_season()
         await message.channel.send(r)
 
 # Exécution du bot
