@@ -20,9 +20,22 @@ async def on_ready():
 @client.event
 async def on_message(message):
     print(f"Commande reçue : '{message.content}'")
-    if message.content == "!dh":
-        r = maxroll_scrap.get_single_lb()
-        await message.channel.send(r)
+    cmd = message.content
+    if cmd[0] == "!":
+        cmd = cmd[1:]
+
+        # Classement saison /lboard
+        if cmd in lboards:
+            if 'team' in cmd:
+                r = "<Prochainement disponible>"
+            else:
+                r = maxroll_scrap.get_single_class(cmd)
+            await message.channel.send(r)
+
+        # Liste des commandes
+        if cmd == "help":
+            r = f"Liste des commandes: !+" + str(lboards)
+            await message.channel.send(r)
 
 # Exécution du bot
 client.run(token)

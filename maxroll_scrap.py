@@ -8,14 +8,13 @@ def get_current_season():
     return data['season']['live_season_identifier']['eu']
 
 # TODO : nommage de la fonction à affiner en fonction du parsing réalisé côté bot
-def get_single_lb():
+def get_single_class(lb):
     # TODO : placeholders à parser en fonction du mot clef
     mode = "hardcore"
     season = str(get_current_season())
-    type = "dh"
 
     # récupération du flux en fonction de la recherche
-    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift-{mode}-{type}.json'
+    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift-{mode}-{lb}.json'
     response = requests.get(url)
     json_data = json.loads(response.content)
     data = json_data['data']
