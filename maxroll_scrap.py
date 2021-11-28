@@ -26,9 +26,8 @@ def get_single_class(lb, season = str(get_current_season()), mode = "-hardcore")
             run['player_data'][0]['cname'] == "BriTon" and \
             clan_rank < 5:
                 clan_rank += 1
-                res = res + f"\n#{clan_rank} : **{run['player_data'][0]['btag']}** \
-p{run['player_data'][0]['plvl']} \
--> **GR{run['rift_data']['grlvl']}** \
+                res = res + f"\n#{clan_rank} : **GR{run['rift_data']['grlvl']}** -> \
+**{run['player_data'][0]['btag']}** (p{run['player_data'][0]['plvl']}) \
 en {run['rift_data']['time']}"
     return res
 
