@@ -19,7 +19,8 @@ def get_single_class(lb):
     json_data = json.loads(response.content)
     data = json_data['data']
     clan_rank = 0
-    res = ""
+    best_run = f"(1er EU: GR{data[0]['rift_data']['grlvl']} en {data[0]['rift_data']['time']})"
+    res = f">> CLASSEMENT {mode.upper()} {lb.upper()} S{season} {best_run} <<\n"
     for run in data:
         if 'ctag' in run['player_data'][0]:
             if run['player_data'][0]['ctag'] == "BriT" and \
