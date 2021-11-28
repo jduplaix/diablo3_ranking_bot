@@ -8,10 +8,10 @@ def get_current_season():
     data = json.loads(response.content)
     return data['season']['live_season_identifier']['eu']
 
-def get_single_class(lb, season = str(get_current_season()), mode = "hardcore"):
+def get_single_class(lb, season = str(get_current_season()), mode = "-hardcore"):
     
     # récupération du flux en fonction de la commande
-    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift-{mode}-{lb}.json'
+    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift{mode}-{lb}.json'
     response = requests.get(url)
     json_data = json.loads(response.content)
     data = json_data['data']
@@ -32,10 +32,10 @@ p{run['player_data'][0]['plvl']} \
 en {run['rift_data']['time']}"
     return res
 
-def get_teams(lb, season = str(get_current_season()), mode = "hardcore"):
+def get_teams(lb, season = str(get_current_season()), mode = "-hardcore"):
 
     # récupération du flux en fonction de la commande
-    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift-{mode}-{lb}.json'
+    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift{mode}-{lb}.json'
     response = requests.get(url)
     json_data = json.loads(response.content)
     data = json_data['data']
