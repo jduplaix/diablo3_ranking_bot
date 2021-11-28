@@ -58,11 +58,11 @@ async def on_message(message):
         
         # Liste des commandes
         if cmd == "help":
-            r = f"```fix\nUsage : classements BriTs```"
-            r = r + "**!classement** [*-Sxx*] [*--soft*]\n"
+            r = f"```fix\nUsage : classements BriTs\n> Affiche les 5 premiers BriTs par ladder```"
+            r = r + "**![ladder]** [*-Sxx*] [*--soft*]\n"
             r = r + f"__Liste des ladders__ : {str(lboards)}\n"
-            r = r + f"\n **Option** *-S'numéro de saison'* : 01 à {str(maxroll_scrap.get_current_season())}. Facultatif, saison en cours par défaut."
-            r = r + f"\n **Option** *--soft* : retourne les classements softcore. Facultatif, classements hardcore par défaut.\n"
+            r = r + f"\n **Option** *-S'numéro de saison sur 2 caractères (01 à {str(maxroll_scrap.get_current_season())})'* -> Facultatif, saison en cours par défaut."
+            r = r + f"\n **Option** *--soft* : retourne les classements softcore -> Facultatif, classements hardcore par défaut.\n"
             r = r + f"Exemples :"
             r = r + f"```!dh```"
             r = r + f"```!team-4 --soft```"
