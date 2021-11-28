@@ -1,19 +1,16 @@
 import requests
 import json
 
+
 def get_current_season():
     url = 'https://assets.maxroll.gg/leaderboards/leaderboard_index.json'
     response = requests.get(url)
     data = json.loads(response.content)
     return data['season']['live_season_identifier']['eu']
 
-
-def get_single_class(season, mode, lb):
-    # TODO : placeholders à parser en fonction du mot clef
-    mode = "hardcore"
-    if season == "" : season = str(get_current_season())
-
-    # récupération du flux en fonction de la recherche
+def get_single_class(lb, season = str(get_current_season()), mode = "hardcore"):
+    
+    # récupération du flux en fonction de la commande
     url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift-{mode}-{lb}.json'
     response = requests.get(url)
     json_data = json.loads(response.content)
@@ -33,5 +30,12 @@ p{run['player_data'][0]['plvl']} \
 en {run['rift_data']['time']}"
     return res
 
-def get_teams(season, mode, lb):
+def get_teams(lb, season = str(get_current_season()), mode = "hardcore"):
+
+    print(lb + season + mode)
+    # récupération du flux en fonction de la commande
+    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift-{mode}-{lb}.json'
+    response = requests.get(url)
+    json_data = json.loads(response.content)
+    data = json_data['data']
     return f"<{lb} S{get_current_season()} *prochainement disponible*>"

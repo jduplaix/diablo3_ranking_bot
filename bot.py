@@ -27,9 +27,9 @@ async def on_message(message):
         # Classement saison en cours /lboard
         if cmd in lboards:
             if 'team' in cmd:
-                r = maxroll_scrap.get_teams("","",cmd)
+                r = maxroll_scrap.get_teams(cmd)
             else:
-                r = maxroll_scrap.get_single_class("", "",cmd)
+                r = maxroll_scrap.get_single_class(cmd)
             await message.channel.send(r)
 
         # Liste des commandes
