@@ -37,10 +37,13 @@ async def on_message(message):
                     if arg == "--soft":
                         mode = arg
                     # si saisie multiple d'option num saison, seule la première est lue 
-                    if re.search("^--\d\d$", arg) and not 'season' in locals():
-                        season = re.sub('-', '', arg)
+                    if re.search("^-S\d\d$", arg) and not 'season' in locals():
+                        season = arg[2:]
                 # valorisation des appels scrap en fonction des options trouvées
-
+                if 'team' in cmd[0]:
+                    r = maxroll_scrap.get_teams(cmd[0],\
+                    season if 'season' in locals() else '',\
+                    mode if 'mode' in locals() else '')
         # Si un seul param, alors uniquement type ladder (sinon cmd invalide sans feedback user)
         else:
             if cmd in lboards:
@@ -54,7 +57,7 @@ async def on_message(message):
             r = f"**Usage : classements BriTs**\n"
             r = r + f"```" + "!classement --saison --soft" + "```"
             r = r + f"__Classements__ : {str(lboards)}\n"
-            r = r + f"\n **Option** *--numéro de saison* : 1 à {str(maxroll_scrap.get_current_season())}. Facultatif, saison en cours par défaut."
+            r = r + f"\n **Option** *-S'numéro de saison'* : 1 à {str(maxroll_scrap.get_current_season())}. Facultatif, saison en cours par défaut."
             r = r + f"\n **Option** *--soft* : retourne les classements softcore. Facultatif, classements hardcore par défaut.\n"
             r = r + f"Exemples :"
             r = r + f"```!dh```"
