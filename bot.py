@@ -44,6 +44,10 @@ async def on_message(message):
                     r = maxroll_scrap.get_teams(cmd[0],\
                     season if 'season' in locals() else '',\
                     mode if 'mode' in locals() else '')
+                else:
+                    r = maxroll_scrap.get_single_class(cmd[0],\
+                    season if 'season' in locals() else '',\
+                    mode if 'mode' in locals() else '')
         # Si un seul param, alors uniquement type ladder (sinon cmd invalide sans feedback user)
         else:
             if cmd in lboards:
