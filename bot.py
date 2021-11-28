@@ -55,7 +55,7 @@ async def on_message(message):
         # Liste des commandes
         if cmd == "help":
             r = f"**Usage : classements BriTs**\n"
-            r = r + f"```" + "!classement --saison --soft" + "```"
+            r = r + f"```" + "!classement [-Sxx] [--soft]" + "```"
             r = r + f"__Classements__ : {str(lboards)}\n"
             r = r + f"\n **Option** *-S'numéro de saison'* : 1 à {str(maxroll_scrap.get_current_season())}. Facultatif, saison en cours par défaut."
             r = r + f"\n **Option** *--soft* : retourne les classements softcore. Facultatif, classements hardcore par défaut.\n"
