@@ -61,7 +61,7 @@ async def on_message(message):
             r = r + f"```!team-4```"
             r = r + f"```!crusader --13```"
             r = r + "\n**Usage : classements par BattleTag**\n<*Coming soon*>"
-    if r : await message.channel.send(r)
+    if 'r' in locals() : await message.channel.send(r)
 
 # Exécution du bot
 client.run(token)
