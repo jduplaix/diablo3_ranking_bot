@@ -34,7 +34,16 @@ async def on_message(message):
 
         # Liste des commandes
         if cmd == "help":
-            r = f"Liste des commandes: !+" + str(lboards)
+            r = f"**Usage :**\n"
+            r = r + f"```" + "!classement --saison --soft" + "```"
+            r = r + f"*classements* : {str(lboards)}\n"
+            r = r + f"\n **Option** *--saison* : s1 à s{str(maxroll_scrap.get_current_season())}. Facultatif, saison en cours par défaut."
+            r = r + f"\n **Option** *--soft* : retourne les classements softcore. Facultatif, classements hardcore par défaut.\n"
+            r = r + f"\n Exemples :"
+            r = r + f"```!dh```"
+            r = r + f"```!team-4```"
+            r = r + f"```!crusader --s13```"
+
             await message.channel.send(r)
 
 # Exécution du bot
