@@ -11,7 +11,7 @@ def get_current_season():
 def get_single_class(lb, season = str(get_current_season()), mode = "-hardcore"):
     
     # récupération du flux en fonction de la commande
-    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift{mode}-{lb}.json'
+    url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift{"" if mode == "--soft" else mode}-{lb}.json'
     response = requests.get(url)
     json_data = json.loads(response.content)
     data = json_data['data']
