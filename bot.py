@@ -45,9 +45,9 @@ async def on_message(message):
         else:
             if cmd in lboards:
                 if 'team' in cmd:
-                    r = maxroll_scrap.get_teams(cmd)
+                    r = maxroll_scrap.get_teams(cmd,'','')
                 else:
-                    r = maxroll_scrap.get_single_class(cmd)
+                    r = maxroll_scrap.get_single_class(cmd,'','')
         
         # Liste des commandes
         if cmd == "help":
