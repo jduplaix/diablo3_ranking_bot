@@ -18,7 +18,7 @@ def get_single_class(lb, season = str(get_current_season()), mode = "-hardcore")
     clan_rank = 0
     best_run = f" 1er EU: GR{data[0]['rift_data']['grlvl']} en {data[0]['rift_data']['time']}"
     #```fix ``` = coloration jaune du §
-    res = f"```fix\n>> CLASSEMENT {mode.upper()} {lb.upper()} S{season} <<\n"
+    res = f"```fix\n>> CLASSEMENT {lb.upper()}{mode.upper()} S{season} <<\n"
     res = res + f"> {best_run}\n```"
     for run in data:
         if 'ctag' in run['player_data'][0]:
@@ -46,6 +46,8 @@ def get_teams(lb, season = str(get_current_season()), mode = "-hardcore"):
     best_run = f" 1ers EU: {best_classes} GR{data[0]['rift_data']['grlvl']} en {data[0]['rift_data']['time']}"
     #```fix ``` = coloration jaune du §
     res = "```fix\n"
-    res = res + f">> CLASSEMENT {mode.upper()} {lb.upper()} S{season} <<\n"
+    res = res + f">> CLASSEMENT {lb.upper()}{mode.upper()} S{season} <<\n"
     res = res + f"> {best_run}\n```"
-    return res + "\n*Top BriTs prochainement*"
+
+
+    #return res + "\n*Top BriTs prochainement*"
