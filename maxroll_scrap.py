@@ -32,7 +32,6 @@ en {run['rift_data']['time']}"
 
 def get_teams(lb, season = str(get_current_season()), mode = "hardcore"):
 
-    print(lb + season + mode)
     # récupération du flux en fonction de la commande
     url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift-{mode}-{lb}.json'
     response = requests.get(url)
