@@ -65,8 +65,8 @@ async def on_message(message):
             r = r + f"\n **Option** *--soft* : retourne les classements softcore -> Facultatif, classements hardcore par défaut.\n"
             r = r + f"Exemples :"
             r = r + f"```!dh```"
-            r = r + f"```!team-4 --soft```"
-            r = r + f"```!crusader -S13```"
+            r = r + f"```!crusader -S23```"
+            r = r + f"```!team-4 -S05 --soft```"
             r = r + "\n```fix\nUsage : classements par BattleTag```<*Coming soon*>"
     if 'r' in locals() : await message.channel.send(r)
 
