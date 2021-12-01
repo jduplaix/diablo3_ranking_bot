@@ -30,15 +30,15 @@ async def on_message(message):
         # vérif présence d'options
         if " " in cmd:
             cmd = cmd.split(" ")
+            # identification des options
+            for arg in cmd:
+                if arg == "--soft":
+                    mode = arg
+                # si saisie multiple d'option num saison, seule la première est lue 
+                if re.search("^-S\d{1,2}$", arg) and not 'season' in locals():
+                    season = arg[2:]
             # contrôle de validité du radical de la commande
             if cmd[0] in lboards:
-                # identification des options
-                for arg in cmd:
-                    if arg == "--soft":
-                        mode = arg
-                    # si saisie multiple d'option num saison, seule la première est lue 
-                    if re.search("^-S\d\d$", arg) and not 'season' in locals():
-                        season = arg[2:]
                 # valorisation des appels scrap en fonction des options trouvées
                 if 'team' in cmd[0]:
                     r = maxroll_scrap.get_teams(cmd[0],\
@@ -48,6 +48,12 @@ async def on_message(message):
                     r = maxroll_scrap.get_single_class(cmd[0],\
                     season if 'season' in locals() else '',\
                     mode if 'mode' in locals() else '')
+            elif re.search("^[a-zA-Z]+#\d{4,6}$", cmd[0]):
+                r = maxroll_scrap.get_btag(cmd[0],\
+                    season if 'season' in locals() else '',\
+                    mode if 'mode' in locals() else '',\
+                    lboards)
+            
         # Si un seul param, alors uniquement type ladder (sinon cmd invalide sans feedback user)
         else:
             if cmd in lboards:
@@ -55,6 +61,9 @@ async def on_message(message):
                     r = maxroll_scrap.get_teams(cmd,'','')
                 else:
                     r = maxroll_scrap.get_single_class(cmd,'','')
+            elif re.search("^[a-zA-Z]+#\d{4,6}$", cmd):
+                r = maxroll_scrap.get_btag(cmd,"","",lboards)
+
         
         # Liste des commandes
         if cmd == "help":
