@@ -84,3 +84,28 @@ def get_teams(lb, season, mode):
                 res = res + "\n"
                 break
     return res
+
+def get_btag(btag, season, mode, lbs):
+
+    if season == "" : season = str(get_current_season())
+    if mode == "--soft":
+        mode = ""
+    else:
+        mode = "-hardcore"
+
+    for lb in lbs:
+        # recherche du joueur dans tous les leaderboards
+        url = f'https://assets.maxroll.gg/leaderboards/s{season}-eu-rift{mode}-{lb}.json'
+        response = requests.get(url)
+        json_data = json.loads(response.content)
+        data = json_data['data']
+        res = f"__**Classements S{season} pour le joueur {btag} :\n"
+
+        # Parcours de tous les runs du ladder pour trouver le btag
+        for run in data:
+            for player in run['player_data']:
+                if player['btag'] == btag:
+                    res = res + f"**> {lb} : Rang {run['rift_data']['api_rank']}** -> GR{run['rift_data']['grlvl']} en {run['rift_data']['time']}"
+                    break
+    print(res)
+
